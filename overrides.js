@@ -15,6 +15,7 @@
       if (!hasContent) continue;
       el.style.setProperty("opacity", "1", "important");
       el.style.setProperty("transform", "none", "important");
+      el.style.setProperty("filter", "none", "important");
     }
   }
 

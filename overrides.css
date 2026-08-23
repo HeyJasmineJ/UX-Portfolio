@@ -39,6 +39,7 @@ p.framer-text span,
 [data-framer-appear-id] {
   opacity: 1 !important;
   transform: none !important;
+  filter: none !important;
 }
 
 .jw-lightbox-hit {

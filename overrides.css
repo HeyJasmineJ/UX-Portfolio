@@ -7,11 +7,14 @@
   transform: none !important;
 }
 
-/* Homepage hero was sized for a longer headline; don't leave a 55vh hole. */
+/* Homepage hero was sized for a longer headline; don't leave a 55vh hole.
+   The role label is position:absolute, so the headline needs top padding
+   or it sits on top of "Senior UX/UI Design Engineer". */
 header.framer-1h517mn {
   height: auto !important;
   min-height: 0 !important;
   max-height: none !important;
+  padding-top: 48px !important;
 }
 
 header.framer-1h0dspi {
@@ -20,7 +23,7 @@ header.framer-1h0dspi {
 
 @media (max-width: 809.98px) {
   header.framer-1h517mn {
-    padding-top: 36px !important;
+    padding-top: 56px !important;
   }
 }
 

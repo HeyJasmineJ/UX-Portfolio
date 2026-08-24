@@ -42,6 +42,27 @@ p.framer-text span,
   filter: none !important;
 }
 
+/* Tablet/phone nav is a closed overlay until Menu is tapped.
+   Don't let the reveal rules above unhide it. */
+nav[data-framer-name="Tablet / Close"] [data-framer-name="Nav Content"],
+nav[data-framer-name="Phone / Close"] [data-framer-name="Nav Content"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+nav[data-framer-name="Tablet / Open"] [data-framer-name="Nav Content"],
+nav[data-framer-name="Phone / Open"] [data-framer-name="Nav Content"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  pointer-events: auto !important;
+}
+
+[data-framer-name="Touch Device Menu"] {
+  cursor: pointer;
+}
+
 .jw-lightbox-hit {
   cursor: zoom-in;
 }

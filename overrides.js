@@ -4,6 +4,7 @@
     for (const el of nodes) {
       const style = el.getAttribute("style") || "";
       if (el.closest('[data-framer-name="Overlay"]')) continue;
+      if (el.closest('[data-framer-name="Nav Content"]')) continue;
       if (!/opacity\s*:\s*0(\.0+1)?/i.test(style) && !el.hasAttribute("data-framer-appear-id")) {
         continue;
       }
@@ -174,13 +175,115 @@
     });
   }
 
+  function setupMobileNav() {
+    const menus = document.querySelectorAll('[data-framer-name="Touch Device Menu"]');
+    if (!menus.length) return;
+
+    const TABLET = { closed: "framer-v-1j7ayml", open: "framer-v-18dwf33" };
+    const PHONE = { closed: "framer-v-1gdp4o4", open: "framer-v-4y5iru" };
+
+    function kind(nav) {
+      const name = nav.getAttribute("data-framer-name") || "";
+      if (name.startsWith("Phone") || nav.classList.contains(PHONE.closed) || nav.classList.contains(PHONE.open)) {
+        return PHONE;
+      }
+      if (name.startsWith("Tablet") || nav.classList.contains(TABLET.closed) || nav.classList.contains(TABLET.open)) {
+        return TABLET;
+      }
+      return null;
+    }
+
+    function label(menu, open) {
+      const text = menu.querySelector("p");
+      if (text) text.textContent = open ? "Close" : "Menu";
+    }
+
+    function setOpen(nav, menu, content, open) {
+      const variants = kind(nav);
+      if (!variants) return;
+      nav.classList.toggle(variants.closed, !open);
+      nav.classList.toggle(variants.open, open);
+      nav.setAttribute(
+        "data-framer-name",
+        (variants === PHONE ? "Phone" : "Tablet") + (open ? " / Open" : " / Close")
+      );
+      if (open) {
+        content.style.setProperty("opacity", "1");
+        content.style.setProperty("transform", "none");
+        content.style.setProperty("visibility", "visible");
+        content.style.setProperty("pointer-events", "auto");
+      } else {
+        content.style.setProperty("opacity", "0");
+        content.style.setProperty("transform", "translateX(-50%)");
+        content.style.setProperty("visibility", "hidden");
+        content.style.setProperty("pointer-events", "none");
+      }
+      menu.setAttribute("aria-expanded", open ? "true" : "false");
+      menu.setAttribute("aria-label", open ? "Close menu" : "Menu");
+      label(menu, open);
+    }
+
+    const controls = [];
+
+    menus.forEach((menu) => {
+      const nav = menu.closest("nav");
+      const content = nav && nav.querySelector('[data-framer-name="Nav Content"]');
+      if (!nav || !content) return;
+
+      menu.setAttribute("role", "button");
+      menu.setAttribute("tabindex", "0");
+      menu.setAttribute("aria-expanded", "false");
+      menu.setAttribute("aria-label", "Menu");
+
+      const toggle = () => {
+        const open = nav.getAttribute("data-framer-name")?.endsWith("/ Open");
+        setOpen(nav, menu, content, !open);
+      };
+
+      menu.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        toggle();
+      });
+      menu.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        toggle();
+      });
+      content.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setOpen(nav, menu, content, false));
+      });
+
+      controls.push({ nav, menu, content });
+    });
+
+    document.addEventListener("click", (event) => {
+      controls.forEach(({ nav, menu, content }) => {
+        if (!nav.getAttribute("data-framer-name")?.endsWith("/ Open")) return;
+        if (nav.contains(event.target)) return;
+        setOpen(nav, menu, content, false);
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      controls.forEach(({ nav, menu, content }) => {
+        if (nav.getAttribute("data-framer-name")?.endsWith("/ Open")) {
+          setOpen(nav, menu, content, false);
+        }
+      });
+    });
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
       setupContactMailto();
       setupLightbox();
+      setupMobileNav();
     });
   } else {
     setupContactMailto();
     setupLightbox();
+    setupMobileNav();
   }
 })();

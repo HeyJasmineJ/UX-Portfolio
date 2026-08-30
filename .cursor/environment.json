@@ -1,0 +1,10 @@
+{
+  "install": "node -v",
+  "start": "true",
+  "terminals": [
+    {
+      "name": "Portfolio site",
+      "command": "npm start"
+    }
+  ]
+}

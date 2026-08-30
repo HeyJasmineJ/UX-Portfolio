@@ -106,6 +106,7 @@ GLOBAL_PAIRS = [
     ("Minimalist Composition with Spheres", "Still life with spheres"),
     ("Person Walking Against Two-Toned Wall", "Person walking past a two-tone wall"),
     ("Potted Plant Against Vivid Yellow Backdrop", "Plant against a yellow wall"),
+    ("Years in Design", "Years in UX"),
 ]
 
 FAQ_PAIRS = [
@@ -249,7 +250,7 @@ SPLIT_BY_FILE = {
         ),
         (
             "I'm a UX designer and front-end developer based in Austin, Texas. With a decade of experience designing and building products for healthcare, enterprise software, logistics, and consumer apps, I bring a unique full-stack perspective to every project.",
-            "I'm a UX designer and front-end developer in Austin. Ten years of healthcare, enterprise software, logistics, and consumer apps — usually as the only designer, and often writing the front-end too.",
+            "I'm a UX designer and front-end developer in Austin. Nine years of UX — healthcare, enterprise software, logistics, and consumer apps — usually as the only designer, and often writing the front-end too.",
         ),
         (
             "I don't just design interfaces—I understand how they're built. This means faster iteration, more realistic solutions, and seamless",
@@ -296,7 +297,7 @@ SPLIT_BY_FILE = {
         ),
         (
             "I've spent the last decade as the lead (and often solo) designer at companies like Nevro, Qualtrics, and Punchh, where I've launched products that serve thousands of users daily. My approach is simple: understand the problem deeply, design the simplest solution, and build it well.",
-            "I've spent the last decade as the lead — and often only — designer at places like Nevro, Qualtrics, and Punchh. Understand the actual problem, then make the simplest thing that works.",
+            "I've spent the last nine years as the lead — and often only — designer at places like Nevro, Qualtrics, and Punchh. Understand the actual problem, then make the simplest thing that works.",
         ),
         (
             ". I believe good design should be accessible to everyone.",

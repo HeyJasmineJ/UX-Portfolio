@@ -1,6 +1,6 @@
 # Jasmine Wilson portfolio
 
-Static self-hosted copy of jasminewilson.com. Framer HTML plus `overrides.css` / `overrides.js`.
+Static HTML/CSS/JS site for jasminewilson.com.
 
 ## Run
 
@@ -14,10 +14,10 @@ Pages: `/`, `/about`, `/project`, and case studies under `/project/{claritea,nev
 
 ## Copy and layout
 
-- Do not invent metrics or restyle the chrome.
-- Visible copy often lives in huge minified HTML lines or letter-split spans. Prefer a Python string/split-text replace over grep.
-- Framer hydration stays off. Mobile/tablet Menu is handled in `overrides.js`. Skip `[data-framer-name="Nav Content"]` in any reveal/unhide helper.
-- Skip Overlay nodes so project-card overlays stay hidden.
+- Do not invent metrics.
+- Shared markup comes from `scripts/render_site.py`. After copy changes, run `python3 scripts/render_site.py`.
+- Verify UI at desktop, tablet (~1024), and phone (~390).
+- Push to `main` deploys on Vercel (`jasmine-wilson-portfolio`).
 
 ## Cursor Cloud specific instructions
 

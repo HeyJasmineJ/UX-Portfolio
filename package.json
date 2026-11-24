@@ -1,10 +1,10 @@
 {
   "name": "jasmine-wilson-portfolio",
   "private": true,
-  "description": "Self-hosted copy of jasminewilson.com",
+  "description": "jasminewilson.com — static HTML/CSS/JS portfolio",
   "scripts": {
     "dev": "npx --yes serve . -p 3000",
     "start": "npx --yes serve . -p 3000",
-    "mirror": "python3 scripts/mirror_framer.py"
+    "build": "python3 scripts/render_site.py"
   }
 }
